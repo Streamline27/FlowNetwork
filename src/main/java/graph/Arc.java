@@ -48,6 +48,7 @@ public class Arc {
 
     @Override
     public String toString() {
+        if (from == null || to == null) return "Unassigned";
         return from.getIdentifier() + " - "+to.getIdentifier();
     }
 }

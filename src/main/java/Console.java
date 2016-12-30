@@ -41,11 +41,10 @@ public class Console {
         showSplittingLine();
         System.out.println(" 4) Enter amount for every consumer: ");
         for (int b = 1; b <= consumerCount; b++) {
-            System.out.print(  "b"+b+": ");
+            System.out.print(" b"+b+": ");
             int amount = scanner.nextInt();
             g.connect("b"+b, "1", amount, 0);
         }
-
 
         showSplittingLine();
         System.out.println(" There will be a matrix "+producerCount+"x"+consumerCount);
@@ -62,6 +61,7 @@ public class Console {
 
         MinimalCostFlowAlgorithm a = new MinimalCostFlowAlgorithm(g, "0", "1");
         GraphVisualiser visualiser = new GraphVisualiser(a.getFlowGraph());
+        scanner.nextLine();
 
         try {
             int iterationNumber = 0;

@@ -40,11 +40,11 @@ public class MinimalCostFlowAlgorithm {
 
         for (Arc arc : path.getArcs()){
 
-            if (arcIsStraight(getFromId(arc), getToId(arc))){
+            if (arcIsStraight(arc)){
                 Arc flowGraphArc = flowGraph.getArc(getFromId(arc), getToId(arc)).get();
                 flowGraphArc.setFlow(flowGraphArc.getFlow() + minFlowInPath);
             }
-            else {
+            else { // If arc is reverse
                 Arc flowGraphArc = flowGraph.getArc(getToId(arc), getFromId(arc)).get();
                 flowGraphArc.setFlow(flowGraphArc.getFlow() - minFlowInPath);
             }
@@ -63,8 +63,8 @@ public class MinimalCostFlowAlgorithm {
         return new IterationResult(incrementalGraph, flowGraph);
     }
 
-    private boolean arcIsStraight(String fromId, String toId) {
-        Optional<Arc> flowGraphArcOptional = flowGraph.getArc(fromId, toId);
+    private boolean arcIsStraight(Arc arc) {
+        Optional<Arc> flowGraphArcOptional = flowGraph.getArc(getFromId(arc), getToId(arc));
         return flowGraphArcOptional.isPresent();
     }
 
